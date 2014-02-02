@@ -30,7 +30,6 @@ catkin_package(
   CATKIN_DEPENDS 
   actionlib
   device_driver_base
-  robot_base_msgs
   geometry_msgs
   roscpp
   rospy
