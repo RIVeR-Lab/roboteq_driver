@@ -26,7 +26,6 @@ generate_messages(DEPENDENCIES std_msgs sensor_msgs geometry_msgs device_driver_
 catkin_package(
   INCLUDE_DIRS include
 #  LIBRARIES hd_driver
-#  CATKIN_DEPENDS actionlib aero_srr_msgs device_driver_base geometry_msgs robot_base_msgs roscpp rospy sensor_msgs std_msgs
 #  DEPENDS system_lib
   CATKIN_DEPENDS 
   actionlib
