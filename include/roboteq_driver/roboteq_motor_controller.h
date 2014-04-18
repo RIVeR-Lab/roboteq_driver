@@ -3,12 +3,10 @@
 
 #include <stdlib.h>
 #include <string>
-#include "RoboteqDevice.h"
-#include "ErrorCodes.h"
-#include "Constants.h"
 #include <exception>
 #include <stdexcept>
 #include <stdint.h>
+#include "RoboteqDevice.h"
 
 namespace roboteq_driver{
 

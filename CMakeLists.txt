@@ -7,17 +7,17 @@ project(roboteq_driver)
 find_package(catkin REQUIRED COMPONENTS
   device_driver_base
   roscpp
-  rospy
+  hardware_interface
 )
 
 
 catkin_package(
-  INCLUDE_DIRS include
-#  LIBRARIES hd_driver
-#  DEPENDS system_lib
+  INCLUDE_DIRS include src/roboteq_lib
+  LIBRARIES roboteq_motor_controller roboteq_controller_hw
   CATKIN_DEPENDS 
   device_driver_base
   roscpp
+  hardware_interface
 )
 
 ###########
@@ -27,14 +27,16 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+  include
+  src/roboteq_lib
   ${catkin_INCLUDE_DIRS}
 )
-include_directories(include src/roboteq_lib)
 
 
-add_library(${PROJECT_NAME}RoboteqLib src/roboteq_lib/RoboteqDevice.cpp src/roboteq_motor_controller.cpp)
-target_link_libraries(${PROJECT_NAME}RoboteqLib ${catkin_LIBRARIES})
+add_library(roboteq_lib src/roboteq_lib/RoboteqDevice.cpp)
 
+add_library(roboteq_motor_controller src/roboteq_motor_controller.cpp)
+target_link_libraries(roboteq_motor_controller roboteq_lib  ${catkin_LIBRARIES})
 
-#add_executable(roboteq_manager src/roboteq_manager.cpp)
-#target_link_libraries(roboteq_manager ${PROJECT_NAME}RoboteqLib ${catkin_LIBRARIES})
+add_library(roboteq_controller_hw src/roboteq_controller_hw.cpp)
+target_link_libraries(roboteq_controller_hw roboteq_motor_controller ${catkin_LIBRARIES})
