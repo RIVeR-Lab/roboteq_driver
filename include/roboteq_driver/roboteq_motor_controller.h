@@ -143,6 +143,14 @@ class RoboteqMotorController{
   MotorMode motor_mode2_;
 };
 
+static inline double limit(double val, double min, double max){
+  if(val<min)
+    return min;
+  if(val>max)
+    return max;
+  return val;
+}
+
 }
 
 #endif //ROBOTEQ_MOTOR_CONTROLLER_H_

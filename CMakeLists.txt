@@ -35,9 +35,6 @@ include_directories(include src/roboteq_lib)
 add_library(${PROJECT_NAME}RoboteqLib src/roboteq_lib/RoboteqDevice.cpp src/roboteq_motor_controller.cpp)
 target_link_libraries(${PROJECT_NAME}RoboteqLib ${catkin_LIBRARIES})
 
-add_library(roboteq_manager_lib src/roboteq_manager_lib.cpp)
-target_link_libraries(roboteq_manager_lib ${catkin_LIBRARIES})
 
-
-add_executable(roboteq_manager src/roboteq_manager.cpp)
-target_link_libraries(roboteq_manager ${PROJECT_NAME}RoboteqLib ${catkin_LIBRARIES})
+#add_executable(roboteq_manager src/roboteq_manager.cpp)
+#target_link_libraries(roboteq_manager ${PROJECT_NAME}RoboteqLib ${catkin_LIBRARIES})
