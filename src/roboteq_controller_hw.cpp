@@ -16,24 +16,24 @@ namespace roboteq_driver{
     vel_interface.registerHandle(vel_handle_2);
 
     controller.open(port);
-    controller.setMotorMode(0, RoboteqMotorController::MOTOR_MODE_RPM);
     controller.setMotorMode(1, RoboteqMotorController::MOTOR_MODE_RPM);
+    controller.setMotorMode(2, RoboteqMotorController::MOTOR_MODE_RPM);
   }
   RoboteqControllerHW::~RoboteqControllerHW(){
     controller.close();
   }
 
   void RoboteqControllerHW::read(){
-    controller.getPosition(0, pos[0]);
-    controller.getPosition(1, pos[1]);
-    controller.getVelocity(0, vel[0]);
-    controller.getVelocity(1, vel[1]);
+    controller.getPosition(1, pos[0]);
+    controller.getPosition(2, pos[1]);
+    controller.getVelocity(1, vel[0]);
+    controller.getVelocity(2, vel[1]);
   }
   
   void RoboteqControllerHW::write(){
     //TODO convert cmd to RPM
-    controller.setRPM(0, cmd[0]);
-    controller.setRPM(1, cmd[1]);
+    controller.setRPM(1, cmd[0]);
+    controller.setRPM(2, cmd[1]);
   }
 
 }
