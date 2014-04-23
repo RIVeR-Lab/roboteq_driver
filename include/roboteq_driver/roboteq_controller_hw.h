@@ -11,7 +11,7 @@ namespace roboteq_driver{
 class RoboteqControllerHW
 {
  public:
-  RoboteqControllerHW(std::string port, std::string actuator_1_name, double maxRPM1, int ppr1, std::string actuator_2_name, double maxRPM2, int ppr2, hardware_interface::ActuatorStateInterface state_interface, hardware_interface::EffortActuatorInterface& eff_interface);
+  RoboteqControllerHW(std::string port, std::string actuator_1_name, double maxRPM1, int ppr1, std::string actuator_2_name, double maxRPM2, int ppr2, hardware_interface::ActuatorStateInterface state_interface, hardware_interface::VelocityActuatorInterface& vel_interface);
 
   ~RoboteqControllerHW();
   void read();
