@@ -80,6 +80,7 @@ class RoboteqMotorController{
    * Close the connection to the motor controller
    */
   void close();
+  bool is_connected(){return device_.IsConnected();}
 
   /*
    * Configuration

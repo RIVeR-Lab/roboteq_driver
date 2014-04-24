@@ -53,11 +53,6 @@ void RoboteqMotorController::open(std::string port){
 	setConfig(_AMOD, 1, 1);
 	setConfig(_AMOD, 4, 1);
 
-	setCurrentTrigger(1, 750, 75);
-	setCurrentTrigger(2, 750, 75);
-
-	saveToEEPROM();
-
 	//Initialize to initial values
 	motor_mode1_ = motor_mode2_ = MOTOR_MODE_UNDEFINED;//make sure to reset local values
 	setMotorMode(1, MOTOR_MODE_RPM);
@@ -192,12 +187,12 @@ void RoboteqMotorController::getVelocity(uint8_t chan, double& value){
   if(chan==1){
     int32_t raw_value;
     getValue(_S, chan, raw_value);
-    value = raw_value;//*maxRPM1_/GO_COMMAND_BOUND;
+    value = raw_value;
   }
   else if(chan==2){
     int32_t raw_value;
     getValue(_S, chan, raw_value);
-    value = raw_value;//*maxRPM1_/GO_COMMAND_BOUND;
+    value = raw_value;
   }
   else
     DRIVER_EXCEPT(Exception, "Invalid motor channel");
