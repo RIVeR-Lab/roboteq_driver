@@ -29,11 +29,10 @@ namespace roboteq_driver{
     controller.getVelocity(1, vel[0]);
     controller.getVelocity(2, vel[1]);
   }
-  
+#define RAD_PER_SEC_TO_RPM (60/2*M_PI)
   void RoboteqControllerHW::write(){
-    //TODO convert cmd to RPM
-    controller.setRPM(1, cmd[0]);
-    controller.setRPM(2, cmd[1]);
+    controller.setRPM(1, cmd[0]*RAD_PER_SEC_TO_RPM);
+    controller.setRPM(2, cmd[1]*RAD_PER_SEC_TO_RPM);
   }
 
 }
