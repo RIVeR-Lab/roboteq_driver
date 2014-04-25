@@ -35,7 +35,7 @@ namespace roboteq_driver{
   void RoboteqControllerHW::connection_check(const ros::TimerEvent& e){
     unique_lock<recursive_timed_mutex> lock(controller_mutex);
     if(!controller.is_connected()){
-      ROS_DEBUG("Reconnecting...");
+      ROS_WARN("Reconnecting to roboteq...");
       reconnect();
     }
   }
@@ -46,8 +46,8 @@ namespace roboteq_driver{
       controller.open(port);
       controller.setMotorMode(1, RoboteqMotorController::MOTOR_MODE_RPM);
       controller.setMotorMode(2, RoboteqMotorController::MOTOR_MODE_RPM);
-      controller.setCurrentTrigger(1, 750, 75);
-      controller.setCurrentTrigger(2, 750, 75);
+      controller.setCurrentTrigger(1, 750, 1000);
+      controller.setCurrentTrigger(2, 750, 1000);
       controller.saveToEEPROM();
     } catch(Exception& e){
       ROS_ERROR_STREAM("Roboteq driver got error reconnecting: "<<e.what());
@@ -67,7 +67,7 @@ namespace roboteq_driver{
       }
     }
   }
-#define RAD_PER_SEC_TO_RPM (60/2*M_PI)
+#define RAD_PER_SEC_TO_RPM (60/(2*M_PI))
   void RoboteqControllerHW::write(){
     unique_lock<recursive_timed_mutex> lock(controller_mutex, try_to_lock);
     if(lock && controller.is_connected()){
@@ -77,8 +77,8 @@ namespace roboteq_driver{
           controller.setRPM(2, cmd[1]*RAD_PER_SEC_TO_RPM);
 	}
         else{
-          controller.setPower(1, 0);
-          controller.setPower(2, 0);
+          controller.setRPM(1, 0);
+          controller.setRPM(2, 0);
         }
       } catch(Exception& e){
         ROS_ERROR_STREAM_THROTTLE(1, "Roboteq driver got error writing command: "<<e.what());

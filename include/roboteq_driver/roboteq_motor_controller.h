@@ -87,7 +87,7 @@ class RoboteqMotorController{
    */
   void setSerialWatchdog(int time);
 
-  void saveRotationInfo(double maxRPM1, double maxRPM2,
+  void setRotationInfo(double maxRPM1, double maxRPM2,
 			 int ppr1, int ppr2);
   /**
    * trigger_delay in ms
