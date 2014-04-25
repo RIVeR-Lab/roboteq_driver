@@ -3,12 +3,10 @@
 
 #include <stdlib.h>
 #include <string>
-#include "RoboteqDevice.h"
-#include "ErrorCodes.h"
-#include "Constants.h"
 #include <exception>
 #include <stdexcept>
 #include <stdint.h>
+#include "RoboteqDevice.h"
 
 namespace roboteq_driver{
 
@@ -82,13 +80,14 @@ class RoboteqMotorController{
    * Close the connection to the motor controller
    */
   void close();
+  bool is_connected(){return device_.IsConnected();}
 
   /*
    * Configuration
    */
   void setSerialWatchdog(int time);
 
-  void saveRotationInfo(double maxRPM1, double maxRPM2,
+  void setRotationInfo(double maxRPM1, double maxRPM2,
 			 int ppr1, int ppr2);
   /**
    * trigger_delay in ms
@@ -142,6 +141,14 @@ class RoboteqMotorController{
   MotorMode motor_mode1_;
   MotorMode motor_mode2_;
 };
+
+static inline double limit(double val, double min, double max){
+  if(val<min)
+    return min;
+  if(val>max)
+    return max;
+  return val;
+}
 
 }
 
