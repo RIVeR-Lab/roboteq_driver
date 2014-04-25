@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   device_driver_base
   roscpp
   hardware_interface
+  safety_interface
 )
 
 
@@ -18,6 +19,7 @@ catkin_package(
   device_driver_base
   roscpp
   hardware_interface
+  safety_interface
 )
 
 ###########

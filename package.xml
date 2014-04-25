@@ -12,9 +12,11 @@
   <build_depend>device_driver_base</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>hardware_interface</build_depend>
+  <build_depend>safety_interface</build_depend>
   <run_depend>device_driver_base</run_depend>
   <run_depend>roscpp</run_depend>
   <run_depend>hardware_interface</run_depend>
+  <run_depend>safety_interface</run_depend>
 
   <export>
   </export>
