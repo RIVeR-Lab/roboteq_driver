@@ -57,10 +57,16 @@ namespace roboteq_driver{
     unique_lock<recursive_timed_mutex> lock(controller_mutex, try_to_lock);
     if(lock && controller.is_connected()){
       try{
-        controller.getPosition(1, pos[0]);
-        controller.getPosition(2, pos[1]);
-        controller.getVelocity(1, vel[0]);
-        controller.getVelocity(2, vel[1]);
+        double pos_rot[2];
+        double vel_rpm[2];
+        controller.getPosition(1, pos_rot[0]);
+        controller.getPosition(2, pos_rot[1]);
+        controller.getVelocity(1, vel_rpm[0]);
+        controller.getVelocity(2, vel_rpm[1]);
+        pos[0] = pos_rot[0]*2*M_PI;
+        pos[1] = pos_rot[1]*2*M_PI;
+        vel[0] = vel_rpm[0]/60*2*M_PI;
+        vel[1] = vel_rpm[1]/60*2*M_PI;
       } catch(Exception& e){
         ROS_ERROR_STREAM_THROTTLE(1, "Roboteq driver got error reading state: "<<e.what());
         close();
