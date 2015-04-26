@@ -6,7 +6,6 @@
 #include <hardware_interface/robot_hw.h>
 #include <roboteq_driver/roboteq_motor_controller.h>
 #include <boost/thread/recursive_mutex.hpp>
-#include <safety_interface/safety_interface.h>
 
 namespace roboteq_driver{
 using namespace boost;
@@ -14,7 +13,7 @@ using namespace boost;
 class RoboteqControllerHW
 {
  public:
-  RoboteqControllerHW(ros::NodeHandle n, std::string port, std::string actuator_1_name, double maxRPM1, int ppr1, std::string actuator_2_name, double maxRPM2, int ppr2, hardware_interface::ActuatorStateInterface state_interface, hardware_interface::VelocityActuatorInterface& vel_interface, safety_interface::SafetyInterface& safety_interface);
+  RoboteqControllerHW(ros::NodeHandle n, std::string port, std::string actuator_1_name, double maxRPM1, int ppr1, std::string actuator_2_name, double maxRPM2, int ppr2, hardware_interface::ActuatorStateInterface state_interface, hardware_interface::VelocityActuatorInterface& vel_interface);
 
   ~RoboteqControllerHW();
   void reconnect();
@@ -32,7 +31,6 @@ class RoboteqControllerHW
   void connection_check(const ros::TimerEvent& e);
   ros::Timer reconnect_timer;
   recursive_timed_mutex controller_mutex;
-  safety_interface::SafetyInterface& safety_interface;
 };
 
 }
