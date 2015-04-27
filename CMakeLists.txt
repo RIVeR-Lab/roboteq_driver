@@ -40,3 +40,22 @@ target_link_libraries(roboteq_motor_controller roboteq_lib  ${catkin_LIBRARIES})
 
 add_library(roboteq_controller_hw src/roboteq_controller_hw.cpp)
 target_link_libraries(roboteq_controller_hw roboteq_motor_controller ${catkin_LIBRARIES})
+
+#############
+## Install ##
+#############
+
+install(TARGETS roboteq_motor_controller roboteq_controller_hw
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+)
+install(DIRECTORY src/roboteq_lib
+  DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
+)
