@@ -13,7 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 catkin_package(
   INCLUDE_DIRS include src/roboteq_lib
-  LIBRARIES roboteq_motor_controller roboteq_controller_hw
+  LIBRARIES roboteq_motor_controller roboteq_controller_hw roboteq_lib
   CATKIN_DEPENDS 
   device_driver_base
   roscpp
@@ -45,7 +45,7 @@ target_link_libraries(roboteq_controller_hw roboteq_motor_controller ${catkin_LI
 ## Install ##
 #############
 
-install(TARGETS roboteq_motor_controller roboteq_controller_hw
+install(TARGETS roboteq_motor_controller roboteq_controller_hw roboteq_lib
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
